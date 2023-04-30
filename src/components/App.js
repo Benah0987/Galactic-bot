@@ -1,5 +1,5 @@
 import React from "react";
-import BotsPage from "./BotsPage";
+import BotsPage from "./Botspage";
 //import component BOtspage
 
 
@@ -7,7 +7,7 @@ import BotsPage from "./BotsPage";
 function App() {
   return (
     <div className="App">
-      
+      <BotsPage />
     </div>
   );
 }
