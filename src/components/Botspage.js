@@ -1,26 +1,37 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import YourBotArmy from "./YourBotArmy";
 import BotCollection from "./BotCollection";
 
-function BotsPage() {
+const BotsPage = () => {
+  const [bots, setBots] = useState([]);
+  const [yourBots, setYourBots] = useState([]);
 
-  const [bots, setBots] = React.useState([]);
-  const [yourBots, setYourBots] = React.useState([]);
+  useEffect(() => {
+    const fetchBots = async () => {
+      try {
+        const response = await fetch(
+          "https://api.npoint.io/f2dab3b71d583e4dbdef/bots"
+        );
+        const data = await response.json();
+        setBots(data);
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
 
-  React.useEffect(() => {
-    fetch("https://api.npoint.io/f2dab3b71d583e4dbdef/bots")
-      .then((r) => r.json())
-      .then((bots) => setBots(bots));
+    fetchBots();
   }, []);
 
   const addBot = (bot) => {
     if (!yourBots.includes(bot)) {
-      setYourBots([...yourBots, bot]);
+      setYourBots((prevBots) => [...prevBots, bot]);
     }
   };
 
   const removeBot = (bot) => {
-    setYourBots(yourBots.filter((yourBot) => yourBot.id !== bot.id));
+    setYourBots((prevBots) =>
+      prevBots.filter((yourBot) => yourBot.id !== bot.id)
+    );
   };
 
   return (
@@ -29,6 +40,6 @@ function BotsPage() {
       <BotCollection bots={bots} botFunction={addBot} />
     </div>
   );
-}
+};
 
 export default BotsPage;
