@@ -9,27 +9,33 @@ const botTypeClasses = {
   Captain: "icon star",
 };
 
-function BotSpecs({ bot }) {
+function BotSpecs({ bot, goBackFunction, enlistFunction }) {
+  const { name, catchphrase, bot_class, health, damage, armor, avatar_url } = bot;
+
+  const handleClickGoBack = () => {
+    goBackFunction();
+  };
+
+  const handleClickEnlist = () => {
+    enlistFunction(bot);
+  };
+
   return (
     <div className="ui segment">
       <div className="ui two column centered grid">
         <div className="row">
           <div className="five wide column">
-            <img
-              alt="oh no!"
-              className="ui medium circular image bordered"
-              src={bot.avatar_url}
-            />
+            <img alt="oh no!" className="ui medium circular image bordered" src={avatar_url} />
           </div>
           <div className="five wide column">
-            <h2>Name: {bot.name}</h2>
+            <h2>Name: {name}</h2>
             <p>
               <strong>Catchphrase: </strong>
-              {bot.catchphrase}
+              {catchphrase}
             </p>
             <strong>
-              Class: {bot.bot_class}
-              <i className={botTypeClasses[bot.bot_class]} />
+              Class: {bot_class}
+              <i className={botTypeClasses[bot_class]} />
             </strong>
             <br />
             <div className="ui segment">
@@ -37,35 +43,23 @@ function BotSpecs({ bot }) {
                 <div className="row">
                   <div className="column">
                     <i className="icon large circular red heartbeat" />
-                    <strong>{bot.health}</strong>
+                    <strong>{health}</strong>
                   </div>
                   <div className="column">
                     <i className="icon large circular yellow lightning" />
-                    <strong>{bot.damage}</strong>
+                    <strong>{damage}</strong>
                   </div>
                   <div className="column">
                     <i className="icon large circular blue shield" />
-                    <strong>{bot.armor}</strong>
+                    <strong>{armor}</strong>
                   </div>
                 </div>
               </div>
             </div>
-            <button
-              className="ui button fluid"
-              onClick={() =>
-                console.log("connect this to a function that shows all bots")
-              }
-            >
+            <button className="ui button fluid" onClick={handleClickGoBack}>
               Go Back
             </button>
-            <button
-              className="ui button fluid"
-              onClick={() =>
-                console.log(
-                  "connect this to a function that adds this bot to your bot army list"
-                )
-              }
-            >
+            <button className="ui button fluid" onClick={handleClickEnlist}>
               Enlist
             </button>
           </div>
