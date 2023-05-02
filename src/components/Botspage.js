@@ -30,20 +30,40 @@ const BotsPage = () => {
   //to add a bot to the data
   //addBot takes in a bot object
   const addBot = (bot) => {
-    //check if the bot is included 
     if (!yourBots.includes(bot)) {
-      //if not append it 
       setYourBots((prevBots) => [...prevBots, bot]);
+      swal({
+        title: "Bot added",
+        text: `${bot.name} has been added to your army.`,
+        icon: "success",
+        button: "OK",
+      });
     }
   };
-//to remove bot data
-  const removeBot = (bot) => {
-    setYourBots((prevBots) =>
-    //filter the bot that matches ur name
-      prevBots.filter((yourBot) => yourBot.id !== bot.id)
-    );
-  };
+  
 
+const removeBot = (bot) => {
+  swal.fire({
+    title: 'Are you sure?',
+    text: 'You will not be able to recover this bot!',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      setYourBots((prevBots) =>
+        prevBots.filter((yourBot) => yourBot.id !== bot.id)
+      );
+      swal.fire(
+        'Deleted!',
+        'Your bot has been deleted.',
+        'success'
+      );
+    }
+  });
+};
   return (
     <div>
       {/*it has two child compnents*/}
