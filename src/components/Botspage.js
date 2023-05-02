@@ -39,6 +39,7 @@ const BotsPage = () => {
 //to remove bot data
   const removeBot = (bot) => {
     setYourBots((prevBots) =>
+    //filter the bot that matches ur name
       prevBots.filter((yourBot) => yourBot.id !== bot.id)
     );
   };
