@@ -1,6 +1,6 @@
 import React from "react";
 
-//the object
+//the object c
 const botTypeClasses = {
   Assault: "icon military",
   Defender: "icon shield",
