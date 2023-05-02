@@ -27,13 +27,16 @@ const BotsPage = () => {
 
     fetchBots();
   }, []);
-
+  //to add a bot to the data
+  //addBot takes in a bot object
   const addBot = (bot) => {
+    //check if the bot is included 
     if (!yourBots.includes(bot)) {
+      //if not append it 
       setYourBots((prevBots) => [...prevBots, bot]);
     }
   };
-
+//to remove bot data
   const removeBot = (bot) => {
     setYourBots((prevBots) =>
       prevBots.filter((yourBot) => yourBot.id !== bot.id)
