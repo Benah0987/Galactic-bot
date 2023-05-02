@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import YourBotArmy from "./YourBotArmy";
 import BotCollection from "./BotCollection";
+import swal from 'sweetalert';
+import Swal from 'sweetalert2';
+
 
 const BotsPage = () => {
   //state that initializes an array to hold all bots
@@ -37,33 +40,36 @@ const BotsPage = () => {
         text: `${bot.name} has been added to your army.`,
         icon: "success",
         button: "OK",
+        timer: 3000
       });
     }
   };
   
+  const removeBot = (bot) => {
+    swal.fire({
+      title: 'Are you sure?',
+      text: 'You will not be able to recover this bot!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+      timer: 3000 
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setYourBots((prevBots) =>
+          prevBots.filter((yourBot) => yourBot.id !== bot.id)
+        );
+        swal.fire({
+          title: 'Deleted!',
+          text: 'Your bot has been deleted.',
+          icon: 'success',
+          timer: 3000 
+        });
+      }
+    });
+  };
 
-const removeBot = (bot) => {
-  swal.fire({
-    title: 'Are you sure?',
-    text: 'You will not be able to recover this bot!',
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Yes, delete it!'
-  }).then((result) => {
-    if (result.isConfirmed) {
-      setYourBots((prevBots) =>
-        prevBots.filter((yourBot) => yourBot.id !== bot.id)
-      );
-      swal.fire(
-        'Deleted!',
-        'Your bot has been deleted.',
-        'success'
-      );
-    }
-  });
-};
   return (
     <div>
       {/*it has two child compnents*/}

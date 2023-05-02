@@ -8,7 +8,7 @@ function YourBotArmy(props) {
   });
 
   return (
-    <div className="ui foarm">
+    <div className="ui form bg primary">
       {/* Navigation bar */}
       <nav className="navbar bg-dark" data-bs-theme="dark">
         <h1>Army bots</h1>
