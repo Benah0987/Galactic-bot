@@ -9,7 +9,7 @@ const botTypeClasses = {
   Witch: "icon magic",
   Captain: "icon star",
 };
-
+//takes in two props
 function BotCard({ bot, botFunction }) {
   return (
     <div className="ui column">

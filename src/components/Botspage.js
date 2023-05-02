@@ -45,6 +45,7 @@ const BotsPage = () => {
 
   return (
     <div>
+      {/*it has two child compnents*/}
       <YourBotArmy bots={yourBots} removeBot={removeBot} />
       <BotCollection bots={bots} botFunction={addBot} />
     </div>
