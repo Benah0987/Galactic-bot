@@ -1,5 +1,6 @@
 import React from "react";
 
+//the object
 const botTypeClasses = {
   Assault: "icon military",
   Defender: "icon shield",
@@ -8,10 +9,12 @@ const botTypeClasses = {
   Witch: "icon magic",
   Captain: "icon star",
 };
-
+//takes three props in
+//goBackFUnc passed down from parent
 function BotSpecs({ bot, goBackFunction, enlistFunction }) {
   const { name, catchphrase, bot_class, health, damage, armor, avatar_url } = bot;
-
+  
+  //when clicked call the goBackFunc
   const handleClickGoBack = () => {
     goBackFunction();
   };
